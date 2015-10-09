@@ -45,7 +45,6 @@ public class HotelDAO {
 		            		String value=values.remove(0);
 		            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
 	            		}else{
-	            			System.out.println("Pasei");
 	            			String value=values.remove(0);
 	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
 	            		}
@@ -63,7 +62,6 @@ public class HotelDAO {
 	            	sql=sql.substring(0, sql.length()-1);
 	            }
             }
-            System.out.println(sql);
             Query query = session.createQuery(sql);
             hotelList = query.list();    
             session.getTransaction().commit();

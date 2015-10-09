@@ -19,6 +19,9 @@ public class TestOrderHotels {
 	@Test
 	public void testOrderHotelsByName() {
 		int i = 0;
+		keys.add("orderby");
+		values.add("nombre");
+		hoteles_BD = hoteldao.getHotels(keys, values);
 		int tamano = hoteles_BD.size();
 		if (tamano>1){
 			for (int j = 1;j<tamano;j++){
@@ -30,6 +33,9 @@ public class TestOrderHotels {
 	@Test
 	public void testOrderHotelsByCategory() {
 		int i = 0;
+		keys.add("orderby");
+		values.add("categoria");
+		hoteles_BD = hoteldao.getHotels(keys, values);
 		int tamano = hoteles_BD.size();
 		if (tamano>1){
 			for (int j = 1;j<tamano;j++){
