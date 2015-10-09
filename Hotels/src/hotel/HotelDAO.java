@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -33,17 +35,35 @@ public class HotelDAO {
  
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
+            List<String> conditionsList=new ArrayList<String>();
             String sql="FROM Hotel";
             if (!keys.isEmpty()){
             	sql=sql.concat(" where ");
 	            for (String entry : keys){
-	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle")){
-	            		String value=values.remove(0);
-	            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
+	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby")){
+	            		if (!entry.equalsIgnoreCase("orderby")){
+		            		String value=values.remove(0);
+		            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
+	            		}else{
+	            			System.out.println("Pasei");
+	            			String value=values.remove(0);
+	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
+	            		}
 	            	}
 	            }
 	            sql=sql.substring(0, sql.length()-4);
+	            if (!conditionsList.isEmpty()){
+	            	sql=sql.concat(" ORDER BY ");
+	            	while(!conditionsList.isEmpty()){
+	            		String condition=conditionsList.remove(0);
+	            		if (condition.equalsIgnoreCase("nombre") || condition.equalsIgnoreCase("categoria")){
+	            			sql=sql.concat(condition+",");
+	            		}
+	            	}
+	            	sql=sql.substring(0, sql.length()-1);
+	            }
             }
+            System.out.println(sql);
             Query query = session.createQuery(sql);
             hotelList = query.list();    
             session.getTransaction().commit();
