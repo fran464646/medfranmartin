@@ -40,10 +40,14 @@ public class HotelDAO {
             if (!keys.isEmpty()){
             	sql=sql.concat(" where ");
 	            for (String entry : keys){
-	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby")){
+	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby") || entry.equalsIgnoreCase("orderbyprice")){
 	            		if (!entry.equalsIgnoreCase("orderby")){
-		            		String value=values.remove(0);
-		            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
+	            			if (entry.equalsIgnoreCase("orderbyprice")){
+	            				sql="select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico from Hotel a,TipoHabitacion b, Regimen c,Tarifa d where d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id order by d.precio    ";
+	            			}else{
+			            		String value=values.remove(0);
+			            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
+	            			}
 	            		}else{
 	            			String value=values.remove(0);
 	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
@@ -51,6 +55,7 @@ public class HotelDAO {
 	            	}
 	            }
 	            sql=sql.substring(0, sql.length()-4);
+	            System.out.println(sql);
 	            if (!conditionsList.isEmpty()){
 	            	sql=sql.concat(" ORDER BY ");
 	            	while(!conditionsList.isEmpty()){
@@ -63,7 +68,8 @@ public class HotelDAO {
 	            }
             }
             Query query = session.createQuery(sql);
-            hotelList = query.list();    
+            hotelList = query.list();
+            System.out.println(hotelList.size());
             session.getTransaction().commit();
  
         } catch (HibernateException e) {

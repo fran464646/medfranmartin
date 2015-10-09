@@ -1,5 +1,9 @@
 package hotel;
 
+import java.util.ArrayList;
+
+import tipoHabitacion.TipoHabitacion;
+
 public class Hotel {
 
 	private Long id;
@@ -10,7 +14,31 @@ public class Hotel {
 	private int categoria;
 	private String telefono;
 	private String correoElectronico;
+	private ArrayList<TipoHabitacion> tipoHabitacion;
 	
+	public Hotel(Long id, String nombre, String calle, String ciudad,
+			String descripcion, int categoria, String telefono,
+			String correoElectronico, ArrayList<TipoHabitacion> tipoHabitacion) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.calle = calle;
+		this.ciudad = ciudad;
+		this.descripcion = descripcion;
+		this.categoria = categoria;
+		this.telefono = telefono;
+		this.correoElectronico = correoElectronico;
+		this.tipoHabitacion = tipoHabitacion;
+	}
+
+	public ArrayList<TipoHabitacion> getTipoHabitacion() {
+		return tipoHabitacion;
+	}
+
+	public void setTipoHabitacion(ArrayList<TipoHabitacion> tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
+	}
+
 	public String getCalle() {
 		return calle;
 	}
@@ -66,18 +94,6 @@ public class Hotel {
 		return correoElectronico;
 	}
 	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
-	}
-	public Hotel(Long id, String nombre, String ciudad, String calle, String descripcion,
-			int categoria, String telefono, String correoElectronico) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.ciudad = ciudad;
-		this.calle = calle;
-		this.descripcion = descripcion;
-		this.categoria = categoria;
-		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
 	}
 }
