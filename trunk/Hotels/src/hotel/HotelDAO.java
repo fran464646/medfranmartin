@@ -55,7 +55,6 @@ public class HotelDAO {
 	            	}
 	            }
 	            sql=sql.substring(0, sql.length()-4);
-	            System.out.println(sql);
 	            if (!conditionsList.isEmpty()){
 	            	sql=sql.concat(" ORDER BY ");
 	            	while(!conditionsList.isEmpty()){
@@ -69,7 +68,6 @@ public class HotelDAO {
             }
             Query query = session.createQuery(sql);
             hotelList = query.list();
-            System.out.println(hotelList.size());
             session.getTransaction().commit();
  
         } catch (HibernateException e) {
