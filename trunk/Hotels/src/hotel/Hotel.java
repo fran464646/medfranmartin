@@ -6,6 +6,11 @@ public class Hotel {
 	private String nombre;
 	private String calle;
 	private String ciudad;
+	private String descripcion;
+	private int categoria;
+	private String telefono;
+	private String correoElectronico;
+	
 	public String getCalle() {
 		return calle;
 	}
@@ -21,10 +26,7 @@ public class Hotel {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
-	private String descripcion;
-	private int categoria;
-	private String telefono;
-	private String correoElectronico;
+	
 	
 	public Hotel(){
 		
