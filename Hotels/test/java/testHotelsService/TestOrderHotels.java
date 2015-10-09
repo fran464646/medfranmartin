@@ -43,5 +43,22 @@ public class TestOrderHotels {
 			}
 		} else assertTrue(true);
 	}
+	
+	@Test
+	public void testOrderHotelsByPrice() {
+		int i = 0;
+		keys.add("orderby");
+		values.add("precio");
+		// Hai que facer un método que devolva un hashmap ordenado de <id_hotel,precioTarifa+barata> porque desta 
+		// forma xunto coa lista hoteles_BD podo ir comparando os id_hotel e comprobar que efectivamente os hoteles
+		// visualizados por pantalla (hoteles_BD) satisfacen o criterio de ordenación por precio.
+		//hoteles_BD = hoteldao.getHotels(keys, values);
+		int tamano = hoteles_BD.size();
+		if (tamano>1){
+			for (int j = 1;j<tamano;j++){
+				assertTrue(Integer.compare(hoteles_BD.get(i).getCategoria(),hoteles_BD.get(j).getCategoria())<=0);
+			}
+		} else assertTrue(true);
+	}
 
 }
