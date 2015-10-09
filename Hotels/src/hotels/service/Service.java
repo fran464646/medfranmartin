@@ -48,9 +48,8 @@ public class Service extends HttpServlet {
 	        Iterator itr = hotelList.iterator();
 	        while(itr.hasNext()){
 	           Object[] obj = (Object[]) itr.next();
-	           //now you have one array of Object for each row
-	           String id = String.valueOf(obj[0]); // don't know the type of column CLIENT assuming String 
-	           String nombre = String.valueOf(obj[1]); //SERVICE assumed as int
+	           String id = String.valueOf(obj[0]); 
+	           String nombre = String.valueOf(obj[1]);
 	           String ciudad = String.valueOf(obj[2]);
 	           String calle = String.valueOf(obj[3]);
 	           String descripcion = String.valueOf(obj[4]);
@@ -58,7 +57,6 @@ public class Service extends HttpServlet {
 	           String telefono = String.valueOf(obj[6]);
 	           String email = String.valueOf(obj[7]);
 	           writer.println("Id="+id+" Nombre="+nombre+" Ciudad="+ciudad+" Calle="+calle+" Descripcion="+descripcion+" Categoria="+categoria+" Telefono="+telefono+" Email="+email+"\n");
-	           //same way for all obj[2], obj[3], obj[4]
 	        }
         }else{
 	        for (Hotel hotel : hotelList){
