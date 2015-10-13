@@ -36,31 +36,51 @@ public class HotelDAO {
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
             List<String> conditionsList=new ArrayList<String>();
+            Boolean orderbyprice=false;
             String sql="FROM Hotel";
             if (!keys.isEmpty()){
             	sql=sql.concat(" where ");
 	            for (String entry : keys){
-	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby") || entry.equalsIgnoreCase("orderbyprice")){
+	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby")){
 	            		if (!entry.equalsIgnoreCase("orderby")){
-	            			if (entry.equalsIgnoreCase("orderbyprice")){
-	            				sql="select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico from Hotel a,TipoHabitacion b, Regimen c,Tarifa d where d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id order by d.precio    ";
-	            			}else{
 			            		String value=values.remove(0);
-			            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND ");
-	            			}
+			            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND    ");
 	            		}else{
 	            			String value=values.remove(0);
 	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
+	            			if (conditionsList.contains("precio")){
+	            				orderbyprice=true;
+	            				sql=sql.concat("d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id AND    ");
+	            				Integer position=conditionsList.indexOf("precio");
+	            				conditionsList.remove(position);
+	            				conditionsList.add(position, "minprecio");
+	            			}
+	            			
 	            		}
 	            	}
 	            }
-	            sql=sql.substring(0, sql.length()-4);
+
+	            sql=sql.substring(0, sql.length()-7);
+	            if (orderbyprice){
+	            	sql=sql.concat(" group by a.id");
+	            	sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d ");
+	            }
+	            System.out.println(sql);
 	            if (!conditionsList.isEmpty()){
 	            	sql=sql.concat(" ORDER BY ");
 	            	while(!conditionsList.isEmpty()){
 	            		String condition=conditionsList.remove(0);
-	            		if (condition.equalsIgnoreCase("nombre") || condition.equalsIgnoreCase("categoria")){
-	            			sql=sql.concat(condition+",");
+	            		if (condition.equalsIgnoreCase("nombre") || condition.equalsIgnoreCase("categoria") || condition.equalsIgnoreCase("minprecio")){
+	            			if (condition.equalsIgnoreCase("minprecio")){
+	            				sql=sql.concat(condition+",");
+	            			}else{
+	            				if (orderbyprice){
+			            			String str="a.";
+			            			sql=sql.concat(str.concat(condition)+",");
+	            				}else{
+	            					sql=sql.concat(condition+",");
+	            				}
+	            			}
 	            		}
 	            	}
 	            	sql=sql.substring(0, sql.length()-1);

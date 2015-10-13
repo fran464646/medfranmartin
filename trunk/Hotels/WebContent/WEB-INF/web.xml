@@ -16,7 +16,7 @@
 </servlet>
 <servlet-mapping>
 <servlet-name>Hotel Service</servlet-name>
-<url-pattern>/Rest/*</url-pattern>
+<url-pattern>/Rest/Hotels/*</url-pattern>
 </servlet-mapping>
 
 </web-app>
