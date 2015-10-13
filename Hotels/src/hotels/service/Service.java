@@ -44,26 +44,7 @@ public class Service extends HttpServlet {
         {
         e.printStackTrace();
         }
-        if (keys.contains("orderbyprice")){
-	        Iterator itr = hotelList.iterator();
-	        while(itr.hasNext()){
-	           Object[] obj = (Object[]) itr.next();
-	           String id = String.valueOf(obj[0]); 
-	           String nombre = String.valueOf(obj[1]);
-	           String ciudad = String.valueOf(obj[2]);
-	           String calle = String.valueOf(obj[3]);
-	           String descripcion = String.valueOf(obj[4]);
-	           String categoria = String.valueOf(obj[5]);
-	           String telefono = String.valueOf(obj[6]);
-	           String email = String.valueOf(obj[7]);
-	           writer.println("Id="+id+" Nombre="+nombre+" Ciudad="+ciudad+" Calle="+calle+" Descripcion="+descripcion+" Categoria="+categoria+" Telefono="+telefono+" Email="+email+"\n");
-	        }
-        }else{
-	        for (Hotel hotel : hotelList){
-	        	writer.println("Id="+hotel.getId()+" Nombre="+hotel.getNombre()+" Ciudad="+hotel.getCiudad()+" Calle="+hotel.getCalle()+" Descripcion="+hotel.getDescripcion()+" Categoria="+hotel.getCategoria()+" Telefono="+hotel.getTelefono()+" Email="+hotel.getCorreoElectronico()+"\n");
-
-	        }
-        }
+        writer.println(hotels);
     }
  
 }
