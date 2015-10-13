@@ -64,6 +64,10 @@ public class HotelDAO {
 	            if (orderbyprice){
 	            	sql=sql.concat(" group by a.id");
 	            	sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d ");
+	            	sql=sql.replace(" nombre", " a.nombre");
+	            	sql=sql.replace(" ciudad", " a.ciudad");
+	            	sql=sql.replace(" categoria", " a.categoria");
+	            	sql=sql.replace(" calle", " a.calle");
 	            }
 	            System.out.println(sql);
 	            if (!conditionsList.isEmpty()){
