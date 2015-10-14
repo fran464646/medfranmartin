@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,8 +22,10 @@ public class HotelDAO {
 		
 	}
 
-	public List<Hotel> getHotels(ArrayList<String> keys,ArrayList<String> values) {
-        List<Hotel> hotelList = new ArrayList<Hotel>();
+	public List<Object> getHotels(ArrayList<String> keys,ArrayList<String> values) {
+        List<Object> hotelList = new ArrayList<Object>();
+
+    	Iterator itr = values.iterator();
 		try {
             // 1. configuring hibernate
             Configuration configuration = new Configuration().configure();
@@ -43,10 +46,10 @@ public class HotelDAO {
 	            for (String entry : keys){
 	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby")){
 	            		if (!entry.equalsIgnoreCase("orderby")){
-			            		String value=values.remove(0);
+			            		String value=String.valueOf(itr.next());
 			            		sql=sql.concat(entry+ " LIKE '%"+value+"%' AND    ");
 	            		}else{
-	            			String value=values.remove(0);
+	            			String value=String.valueOf(itr.next());
 	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
 	            			if (conditionsList.contains("precio")){
 	            				orderbyprice=true;
