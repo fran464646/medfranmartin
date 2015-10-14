@@ -10,12 +10,16 @@
 <welcome-file>default.jsp</welcome-file>
 </welcome-file-list>
 <servlet>
-<servlet-name>Hotel Service</servlet-name>
-<servlet-class>hotels.service.Service</servlet-class>
+<servlet-name>Jersey REST Service</servlet-name>
+<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+<init-param>
+	<param-name>jersey.config.server.provider.packages</param-name>
+	<param-value>hotels.service</param-value>
+</init-param>
 <load-on-startup>1</load-on-startup>
 </servlet>
 <servlet-mapping>
-<servlet-name>Hotel Service</servlet-name>
+<servlet-name>Jersey REST Service</servlet-name>
 <url-pattern>/Rest/Hotels/*</url-pattern>
 </servlet-mapping>
 

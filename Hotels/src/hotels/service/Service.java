@@ -1,77 +1,95 @@
 package hotels.service;
 
-import static org.junit.Assert.assertTrue;
 import hotel.Hotel;
 import hotel.HotelDAO;
 import hotel.HotelResults;
 
-import java.io.IOException;
-import java.io.PrintWriter;
- 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 
 import com.google.gson.Gson;
  
-public class Service extends HttpServlet {
+@Path("/")
+public class Service {
  
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
- 
-        String hotels = null;
-        Enumeration parameters = request.getParameterNames();
-        ArrayList<String> keys=new ArrayList<String>();
+	
+	@GET
+	@Path("/{id_hotel}/")
+	public String Hotel(@PathParam("id_hotel")String id){
+		String hotelJSON;
+		Hotel hotel=new HotelDAO().getHotel(id);
+		Gson gson = new Gson();
+        hotelJSON = gson.toJson(hotel);
+        return hotelJSON;
+	}
+	@GET
+	@Path("/")
+    public String Hoteles(@QueryParam("nombre") String nombre,@QueryParam("ciudad") String ciudad,@QueryParam("calle") String calle,@QueryParam("categoria") String categoria,@QueryParam("orderby") String orderby){
+
+		ArrayList<String> keys=new ArrayList<String>();
         ArrayList<String> values=new ArrayList<String>();
+        String hotels = null;
+        if(nombre!=null){
+        	keys.add("nombre");
+        	values.add(nombre);
+        }
+        if(ciudad!=null){
+        	keys.add("ciudad");
+        	values.add(ciudad);
+        }
+        if(calle!=null){
+        	keys.add("calle");
+        	values.add(calle);
+        }
+        if(categoria!=null){
+        	keys.add("categoria");
+        	values.add(categoria);
+        }
+        if(orderby!=null){
+        	keys.add("orderby");
+        	values.add(orderby);
+        }
         List<Hotel> hotelList = new ArrayList<Hotel>();
         List<HotelResults> hotelListResult = new ArrayList<HotelResults>();
-        while (parameters.hasMoreElements()){
-        	String key=(String) parameters.nextElement();
-        	keys.add(key);
-        	String value=request.getParameter(key);
-        	values.add(value);
-        }
         try
         {
         hotelList = new HotelDAO().getHotels(keys,values);
-        if (values.contains("precio")){
+        if (orderby!=null && orderby.contains("precio")){
 	        Iterator itr = hotelList.iterator();
 	        while(itr.hasNext()){
 	           Object[] obj = (Object[]) itr.next();
 	           //now you have one array of Object for each row
 	           Long id = Long.valueOf(String.valueOf(obj[0]));
-	           String nombre = String.valueOf(obj[1]);
-	           String ciudad = String.valueOf(obj[2]);
-	           String calle = String.valueOf(obj[3]);
+	           String nombre1 = String.valueOf(obj[1]);
+	           String ciudad1 = String.valueOf(obj[2]);
+	           String calle1 = String.valueOf(obj[3]);
 	           String descripcion = String.valueOf(obj[4]);
-	           Integer categoria = Integer.valueOf(String.valueOf(obj[5]));
+	           Integer categoria1 = Integer.valueOf(String.valueOf(obj[5]));
 	           String telefono = String.valueOf(obj[6]);
 	           String correoElectronico = String.valueOf(obj[7]);
 	           Double precio = Double.valueOf(String.valueOf(obj[8]));
-	           System.out.println(precio);
-	           HotelResults hotel=new HotelResults(id,nombre,calle,ciudad,descripcion,categoria,telefono,correoElectronico,precio);
+	           HotelResults hotel=new HotelResults(id,nombre1,calle1,ciudad1,descripcion,categoria1,telefono,correoElectronico,precio);
 	           hotelListResult.add(hotel);
 	        }
 	        Gson gson = new Gson();
 	        hotels = gson.toJson(hotelListResult);
-	        writer.println(hotels);
+	        return hotels;
 	    }else{
 	        Gson gson = new Gson();
 	        hotels = gson.toJson(hotelList);
-	        writer.println(hotels);
+	        return hotels;
         }
         } catch (Exception e)
         {
         e.printStackTrace();
+        return "";
         }
         
     }
- 
 }
