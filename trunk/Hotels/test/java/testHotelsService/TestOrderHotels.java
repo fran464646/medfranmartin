@@ -47,26 +47,27 @@ public class TestOrderHotels {
 	
 	@Test
 	public void testOrderHotelsByPrice() {
-		keys.add("orderbyprice");
+		keys.add("orderby");
+		values.add("precio");
 		hoteles_BD =  hoteldao.getHotels(keys, values);
 		List <Hotel> hoteles = new ArrayList<Hotel>();
 		
 		Hotel h1 = new Hotel();
-		h1.setId(3l);
+		h1.setId(5l);
 		Hotel h2 = new Hotel();
-		h2.setId(1l);
+		h2.setId(3l);
 		Hotel h3 = new Hotel();
 		h3.setId(8l);
 		Hotel h4 = new Hotel();
-		h4.setId(4l);
+		h4.setId(1l);
 		Hotel h5 = new Hotel();
-		h5.setId(2l);
+		h5.setId(4l);
 		Hotel h6 = new Hotel();
-		h6.setId(5l);
+		h6.setId(2l);
 		Hotel h7 = new Hotel();
-		h7.setId(6l);
+		h7.setId(7l);
 		Hotel h8 = new Hotel();
-		h8.setId(7l);
+		h8.setId(6l);
 		
 		hoteles.add(h1);
 		hoteles.add(h2);
