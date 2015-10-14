@@ -6,7 +6,7 @@ import javax.persistence.Transient;
 
 import tipoHabitacion.TipoHabitacion;
 
-public class Hotel {
+public class HotelResults {
 
 	private Long id;
 	private String nombre;
@@ -16,11 +16,12 @@ public class Hotel {
 	private int categoria;
 	private String telefono;
 	private String correoElectronico;
-	private ArrayList<TipoHabitacion> tipoHabitacion;
+	private Double precio;
 
-	public Hotel(Long id, String nombre, String calle, String ciudad,
+	public HotelResults(Long id, String nombre, String calle, String ciudad,
 			String descripcion, int categoria, String telefono,
-			String correoElectronico, ArrayList<TipoHabitacion> tipoHabitacion) {
+			String correoElectronico,
+			Double precio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -30,15 +31,14 @@ public class Hotel {
 		this.categoria = categoria;
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
-		this.tipoHabitacion = tipoHabitacion;
+		this.precio = precio;
+	}
+	public Double getPrecio() {
+		return precio;
 	}
 
-	public ArrayList<TipoHabitacion> getTipoHabitacion() {
-		return tipoHabitacion;
-	}
-
-	public void setTipoHabitacion(ArrayList<TipoHabitacion> tipoHabitacion) {
-		this.tipoHabitacion = tipoHabitacion;
+	public void setPrecio(Double precio) {
+		this.precio = precio;
 	}
 
 	public String getCalle() {
@@ -58,7 +58,7 @@ public class Hotel {
 	}
 	
 	
-	public Hotel(){
+	public HotelResults(){
 		
 	}
 	

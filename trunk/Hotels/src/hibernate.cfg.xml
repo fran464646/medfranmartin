@@ -16,5 +16,9 @@
         <mapping resource="tipoHabitacion/TipoHabitacion.hbm.xml" />
         <mapping resource="regimen/Regimen.hbm.xml" />
         <mapping resource="tarifa/Tarifa.hbm.xml" />
+        <mapping resource="reserva/Reserva.hbm.xml" />
+        <mapping resource="servicio/Servicio.hbm.xml" />
+        <mapping resource="habitacion/Habitacion.hbm.xml" />
+        <mapping resource="objeto/Objeto.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
