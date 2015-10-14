@@ -48,8 +48,8 @@ public class Service extends HttpServlet {
 	           //now you have one array of Object for each row
 	           Long id = Long.valueOf(String.valueOf(obj[0]));
 	           String nombre = String.valueOf(obj[1]);
-	           String calle = String.valueOf(obj[2]);
-	           String ciudad = String.valueOf(obj[3]);
+	           String ciudad = String.valueOf(obj[2]);
+	           String calle = String.valueOf(obj[3]);
 	           String descripcion = String.valueOf(obj[4]);
 	           Integer categoria = Integer.valueOf(String.valueOf(obj[5]));
 	           String telefono = String.valueOf(obj[6]);
