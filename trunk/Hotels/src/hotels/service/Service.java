@@ -30,7 +30,7 @@ public class Service extends HttpServlet {
         Enumeration parameters = request.getParameterNames();
         ArrayList<String> keys=new ArrayList<String>();
         ArrayList<String> values=new ArrayList<String>();
-        List<Object> hotelList = new ArrayList<Object>();
+        List<Hotel> hotelList = new ArrayList<Hotel>();
         List<HotelResults> hotelListResult = new ArrayList<HotelResults>();
         while (parameters.hasMoreElements()){
         	String key=(String) parameters.nextElement();

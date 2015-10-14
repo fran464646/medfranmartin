@@ -22,8 +22,8 @@ public class HotelDAO {
 		
 	}
 
-	public List<Object> getHotels(ArrayList<String> keys,ArrayList<String> values) {
-        List<Object> hotelList = new ArrayList<Object>();
+	public List<Hotel> getHotels(ArrayList<String> keys,ArrayList<String> values) {
+        List<Hotel> hotelList = new ArrayList<Hotel>();
 
     	Iterator itr = values.iterator();
 		try {
