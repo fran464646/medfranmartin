@@ -15,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
+import tipoHabitacion.TipoHabitacion;
+
 import com.google.gson.Gson;
  
 @Path("/")
@@ -25,9 +27,24 @@ public class Service {
 	@Path("/{id_hotel}/Habitaciones")
 	public String Hotel(@PathParam("id_hotel")String id, @QueryParam("fechaEntrada")String fechaEntrada,@QueryParam("fechaSalida")String fechaSalida) throws ParseException{
 		String habitacionesJSON;
-		List<String> habitaciones=new HotelDAO().getHotelRooms(id,fechaEntrada,fechaSalida);
+		List<TipoHabitacion> habitaciones=new HotelDAO().getHotelRooms(id,fechaEntrada,fechaSalida);
+		List<TipoHabitacion> habitacionesfinal=new ArrayList<TipoHabitacion>();
+		 Iterator itr = habitaciones.iterator();
+	        while(itr.hasNext()){
+	           Object[] obj = (Object[]) itr.next();
+	           //now you have one array of Object for each row
+	           Long idHabitacion = Long.valueOf(String.valueOf(obj[0]));
+	           Long idHotel = Long.valueOf(String.valueOf(obj[1]));
+	           String nombre = String.valueOf(obj[2]);
+	           Integer capacidad = Integer.valueOf(String.valueOf(obj[3]));
+	           Integer tamano = Integer.valueOf(String.valueOf(obj[4]));
+	           String tipoCama = String.valueOf(obj[5]);
+	           Boolean oferta = Boolean.valueOf(String.valueOf(obj[6]));	
+	           TipoHabitacion tipoHabitacion=new TipoHabitacion(idHabitacion,idHotel,nombre,capacidad,tamano,tipoCama,oferta);
+	           habitacionesfinal.add(tipoHabitacion);
+	        }
 		Gson gson = new Gson();
-        habitacionesJSON = gson.toJson(habitaciones);
+        habitacionesJSON = gson.toJson(habitacionesfinal);
         return habitacionesJSON;
 	}
 	@GET

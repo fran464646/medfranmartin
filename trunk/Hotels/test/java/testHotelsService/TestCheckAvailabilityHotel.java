@@ -17,6 +17,8 @@ public class TestCheckAvailabilityHotel {
 	@Test
 	public void testCheckAvailability() throws ParseException {
 		tipos = hoteldao.getHotelRooms("1", "14/10/2015", "15/10/2015");
+		System.out.println(tipos.get(0).getId());
+		System.out.println(tipos.get(1).getId());
 		assertTrue(Long.compare(tipos.get(0).getId(),1)==0);
 		assertTrue(Long.compare(tipos.get(1).getId(),2)==0);
 
