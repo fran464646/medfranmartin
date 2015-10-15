@@ -5,6 +5,7 @@ import hotel.HotelDAO;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,15 +14,16 @@ import tipoHabitacion.TipoHabitacion;
 
 public class TestCheckAvailabilityHotel {
 	List<TipoHabitacion> tipos = new ArrayList<TipoHabitacion>();
-	HotelDAO hoteldao;
+	HotelDAO hoteldao = new HotelDAO();
 	@Test
 	public void testCheckAvailability() throws ParseException {
-		tipos = hoteldao.getHotelRooms("1", "14/10/2015", "15/10/2015");
-		System.out.println(tipos.get(0).getId());
-		System.out.println(tipos.get(1).getId());
-		assertTrue(Long.compare(tipos.get(0).getId(),1)==0);
-		assertTrue(Long.compare(tipos.get(1).getId(),2)==0);
-
+		tipos=hoteldao.getHotelRooms("1", "14/10/2015", "15/10/2015");
+		Iterator itr = tipos.iterator();
+       Object[] obj = (Object[]) itr.next();
+       //now you have one array of Object for each row
+       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),1)==0);
+       obj = (Object[]) itr.next();
+       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),2)==0);
 	}
 	
 	
