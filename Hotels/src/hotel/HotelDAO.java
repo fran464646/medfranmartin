@@ -1,8 +1,13 @@
 package hotel;
 
+import habitacion.Habitacion;
+
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -131,5 +136,37 @@ public class HotelDAO {
 	         System.out.println("error");
 		}
 		return hotel.get(0);
+	}
+	
+	public List<String> getHotelRooms(String id,String fechaEntrada,String fechaSalida) throws ParseException{
+		List<String> habitaciones=new ArrayList<String>();
+		System.out.println(fechaEntrada);
+		System.out.println(fechaSalida);
+		try{
+		// 1. configuring hibernate
+	        Configuration configuration = new Configuration().configure();
+	
+	        // 2. create sessionfactory
+	        SessionFactory sessionFactory = configuration.buildSessionFactory();
+	
+	        // 3. Get Session object
+	        Session session = sessionFactory.openSession();
+	
+	        // 4. Starting Transaction
+	        Transaction transaction = session.beginTransaction();
+			System.out.println(habitaciones);
+			String sql="SELECT a.id,count(*) from TipoHabitacion a, Habitacion b where b.idTipoHabitacion=a.id AND b.numero not in (SELECT idHabitacion from Reserva where (fechaEntrada<=:fechaEntrada AND fechaSalida>=:fechaEntrada) OR (fechaEntrada>=:fechaEntrada AND fechaSalida<=:fechaSalida) OR ((fechaEntrada>=:fechaEntrada AND fechaEntrada<=:fechaSalida) AND fechaSalida>=:fechaSalida)) group by a.id";
+			Query query=session.createQuery(sql);	
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        Date date=formatter.parse(fechaEntrada);
+			query.setParameter("fechaEntrada",date);
+			date=formatter.parse(fechaSalida);
+			query.setParameter("fechaSalida",date);
+			habitaciones=query.list();
+		} catch (HibernateException e){
+			 System.out.println(e.getMessage());
+	         System.out.println("error");
+		}
+		return habitaciones;
 	}
 }

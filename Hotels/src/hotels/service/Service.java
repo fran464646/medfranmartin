@@ -1,9 +1,11 @@
 package hotels.service;
 
+import habitacion.Habitacion;
 import hotel.Hotel;
 import hotel.HotelDAO;
 import hotel.HotelResults;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,13 +22,13 @@ public class Service {
  
 	
 	@GET
-	@Path("/{id_hotel}/")
-	public String Hotel(@PathParam("id_hotel")String id){
-		String hotelJSON;
-		Hotel hotel=new HotelDAO().getHotel(id);
+	@Path("/{id_hotel}/Habitaciones")
+	public String Hotel(@PathParam("id_hotel")String id, @QueryParam("fechaEntrada")String fechaEntrada,@QueryParam("fechaSalida")String fechaSalida) throws ParseException{
+		String habitacionesJSON;
+		List<String> habitaciones=new HotelDAO().getHotelRooms(id,fechaEntrada,fechaSalida);
 		Gson gson = new Gson();
-        hotelJSON = gson.toJson(hotel);
-        return hotelJSON;
+        habitacionesJSON = gson.toJson(habitaciones);
+        return habitacionesJSON;
 	}
 	@GET
 	@Path("/")
