@@ -24,6 +24,16 @@ public class Service {
  
 	
 	@GET
+	@Path("/{id_hotel}/Habitaciones/{id_habitacion}")
+	public String Habitacion(@PathParam("id_habitacion")String id_habitacion) throws ParseException{
+		String habitacionJSON;
+		TipoHabitacion habitacion=new HotelDAO().getHabitacion(id_habitacion);
+		Gson gson = new Gson();
+        habitacionJSON = gson.toJson(habitacion);
+        return habitacionJSON;
+	}
+	
+	@GET
 	@Path("/{id_hotel}/Habitaciones")
 	public String Hotel(@PathParam("id_hotel")String id, @QueryParam("fechaEntrada")String fechaEntrada,@QueryParam("fechaSalida")String fechaSalida) throws ParseException{
 		String habitacionesJSON;

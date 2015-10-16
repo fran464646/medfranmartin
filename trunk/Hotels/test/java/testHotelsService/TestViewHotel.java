@@ -29,7 +29,7 @@ public class TestViewHotel {
 	@Test
 	public void testCheckViewHabitacion() {
 		TipoHabitacion result;
-		result = hoteldao.Habitacion("1");
+		result = hoteldao.getHabitacion("1");
 		assertTrue(Long.compare(result.getId(),1l)==0);
 	}
 	
