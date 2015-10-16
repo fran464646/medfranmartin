@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
+import servicio.Servicio;
 import tipoHabitacion.TipoHabitacion;
 
 import com.google.gson.Gson;
@@ -22,6 +23,16 @@ import com.google.gson.Gson;
 @Path("/")
 public class Service {
  
+	
+	@GET
+	@Path("/{id_hotel}/Habitaciones/{id_habitacion}/Servicios")
+	public String ServiciosHabitacion(@PathParam("id_habitacion")String id_habitacion) throws ParseException{
+		String habitacionJSON;
+		List<Servicio> serviciosHabitacion=new HotelDAO().getServiciosHabitacion(id_habitacion);
+		Gson gson = new Gson();
+        habitacionJSON = gson.toJson(serviciosHabitacion);
+        return habitacionJSON;
+	}
 	
 	@GET
 	@Path("/{id_hotel}/Habitaciones/{id_habitacion}")
