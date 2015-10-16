@@ -26,6 +26,37 @@ import com.google.gson.Gson;
 public class Service {
  
 	@GET
+	@Path("/{id_hotel}/Habitaciones/{id_habitacion}/Tarifas/{id_tarifa}/Reservar")
+	public String HacerReserva(@PathParam("id_hotel")String id_hotel,@PathParam("id_habitacion")String id_habitacion,@PathParam("id_tarifa")String id_tarifa,@QueryParam("fechaEntrada")String fechaEntrada,@QueryParam("fechaSalida")String fechaSalida,@QueryParam("nombre")String nombre,@QueryParam("apellido1")String apellido1,@QueryParam("apellido2")String apellido2,@QueryParam("email")String email,@QueryParam("telefono")String telefono,@QueryParam("numCuenta")String numCuenta,@QueryParam("observacion")String observacion) throws ParseException{
+		String hotelJSON;
+		String respuesta;
+		System.out.println(id_hotel);
+		System.out.println(id_habitacion);
+		System.out.println(id_tarifa);
+		System.out.println(fechaEntrada);
+		System.out.println(fechaSalida);
+		System.out.println(nombre);
+		System.out.println(apellido1);
+		System.out.println(apellido2);
+		System.out.println(email);
+		System.out.println(telefono);
+		System.out.println(numCuenta);
+		System.out.println(observacion);
+		if (id_hotel!=null && id_habitacion!=null && id_tarifa!=null && fechaEntrada!=null && fechaSalida!=null && nombre!=null && apellido1!=null && apellido2!=null && email!=null && telefono!=null && numCuenta!=null && observacion!=null){
+			 respuesta=new HotelDAO().doReserva(id_hotel,id_habitacion,id_tarifa,fechaEntrada,fechaSalida,nombre,apellido1,apellido2,email,telefono,numCuenta,observacion);
+			 Gson gson = new Gson();
+		        hotelJSON = gson.toJson(respuesta);
+		        return hotelJSON;
+		}else{
+			String fallo="Los datos introducidos son incorrectos. Por favor, revíselos y vuelva a intentarlo.";
+			Gson gson = new Gson();
+	        hotelJSON = gson.toJson(fallo);
+	        return hotelJSON;
+		}
+	}
+	
+	
+	@GET
 	@Path("/{id_hotel}/Servicios")
 	public String ServiciosHotel(@PathParam("id_hotel")String id_hotel) throws ParseException{
 		String hotelJSON;

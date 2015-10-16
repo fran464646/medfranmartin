@@ -20,6 +20,8 @@ public class TestReservationRoom {
 		String respuesta;
 		respuesta = hoteldao.doReserva("1","1","1","14/10/2015","15/10/2015","Fran","Pais","Fondo","francisco@udc.es","608360469","78960574","Vale");
 		assertTrue(respuesta.equalsIgnoreCase("Su reserva se ha realizado correctamente!"));
+		respuesta = hoteldao.doReserva("1","1","1","14/10/2015","15/10/2015","Fran","Pais","Fondo","francisco@udc.es","608360469","78960574","Vale");
+		assertTrue(respuesta.equalsIgnoreCase("La combinacion de (habitacion,tarifa) seleccionada no se encuentra disponible para las fechas seleccionadas."));
 	}
 	
 }
