@@ -26,6 +26,16 @@ import com.google.gson.Gson;
 public class Service {
  
 	@GET
+	@Path("/{id_hotel}/Servicios")
+	public String ServiciosHotel(@PathParam("id_hotel")String id_hotel) throws ParseException{
+		String hotelJSON;
+		List<Servicio> serviciosHotel=new HotelDAO().getServiciosHotel(id_hotel);
+		Gson gson = new Gson();
+        hotelJSON = gson.toJson(serviciosHotel);
+        return hotelJSON;
+	}
+	
+	@GET
 	@Path("/{id_hotel}/Habitaciones/{id_habitacion}/Tarifas")
 	public String TarifasHabitacion(@PathParam("id_habitacion")String id_habitacion) throws ParseException{
 		String habitacionJSON;

@@ -34,5 +34,3 @@ public class TestViewHotel {
 	       assertTrue(Long.compare(servicios.get(0).getId(),1l)==0);
 		}
 	}
-	
-}
