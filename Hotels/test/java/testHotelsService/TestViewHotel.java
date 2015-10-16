@@ -32,5 +32,5 @@ public class TestViewHotel {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		servicios = hoteldao.getServiciosHotel("1");
 	       assertTrue(Long.compare(servicios.get(0).getId(),1l)==0);
-		}
 	}
+}
