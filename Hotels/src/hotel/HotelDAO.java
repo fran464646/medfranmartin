@@ -32,6 +32,31 @@ public class HotelDAO {
 		
 	}
 	
+	public List<Servicio> getServiciosHotel(String id_hotel){
+		List<Servicio> serviciosHotel=new ArrayList<Servicio>();
+		try{
+		// 1. configuring hibernate
+	        Configuration configuration = new Configuration().configure();
+	
+	        // 2. create sessionfactory
+	        SessionFactory sessionFactory = configuration.buildSessionFactory();
+	
+	        // 3. Get Session object
+	        Session session = sessionFactory.openSession();
+	
+	        // 4. Starting Transaction
+	        Transaction transaction = session.beginTransaction();
+			String sql="FROM Servicio where idHotel =:id ";
+			Query query=session.createQuery(sql);
+			query.setParameter("id", Long.valueOf(id_hotel));
+			serviciosHotel=query.list();
+		} catch (HibernateException e){
+			 System.out.println(e.getMessage());
+	         System.out.println("error");
+		}
+		return serviciosHotel;
+	}
+	
 	public List<Tarifa> getTarifasHabitacion(String id_habitacion){
 		List<Tarifa> tarifasHabitacion=new ArrayList<Tarifa>();
 		try{
