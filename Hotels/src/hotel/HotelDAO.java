@@ -318,7 +318,6 @@ public class HotelDAO {
 	            			}else{
 	            				if (orderbyprice){
 
-	            					System.out.println("Paso por aqui");
 			            			sql=sql.concat("a."+condition);
 			            			if (itr.hasNext()) sql = sql.concat(",");
 	            				}else{
@@ -341,7 +340,6 @@ public class HotelDAO {
             	Date date = new Date();
             	query.setParameter("fecha", date);
             }
-            System.out.println(query.toString());
             hotelList = query.list();
             session.getTransaction().commit();
  
@@ -460,8 +458,6 @@ public class HotelDAO {
 	
 	public List<TipoHabitacion> getHotelRooms(String id,String fechaEntrada,String fechaSalida) throws ParseException{
 		List<TipoHabitacion> habitaciones=new ArrayList<TipoHabitacion>();
-		System.out.println(fechaEntrada);
-		System.out.println(fechaSalida);
 		try{
 		// 1. configuring hibernate
 	        Configuration configuration = new Configuration().configure();
@@ -474,14 +470,14 @@ public class HotelDAO {
 	
 	        // 4. Starting Transaction
 	        Transaction transaction = session.beginTransaction();
-			System.out.println(habitaciones);
-			String sql="SELECT a.id,count(*) from TipoHabitacion a, Habitacion b where b.idTipoHabitacion=a.id AND b.numero not in (SELECT idHabitacion from Reserva where (fechaEntrada<=:fechaEntrada AND fechaSalida>=:fechaEntrada) OR (fechaEntrada>=:fechaEntrada AND fechaSalida<=:fechaSalida) OR ((fechaEntrada>=:fechaEntrada AND fechaEntrada<=:fechaSalida) AND fechaSalida>=:fechaSalida)) group by a.id";
+			String sql="SELECT a.id,a.idHotel,a.nombre,a.capacidad,a.tamano,a.tipoCama,a.oferta from TipoHabitacion a, Habitacion b where b.idTipoHabitacion=a.id AND b.numero not in (SELECT idHabitacion from Reserva where (fechaEntrada<=:fechaEntrada AND fechaSalida>=:fechaEntrada) OR (fechaEntrada>=:fechaEntrada AND fechaSalida<=:fechaSalida) OR ((fechaEntrada>=:fechaEntrada AND fechaEntrada<=:fechaSalida) AND fechaSalida>=:fechaSalida)) AND idHotel = :id  group by a.id";
 			Query query=session.createQuery(sql);	
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	        Date date=formatter.parse(fechaEntrada);
 			query.setParameter("fechaEntrada",date);
 			date=formatter.parse(fechaSalida);
 			query.setParameter("fechaSalida",date);
+			query.setParameter("id", id);
 			habitaciones=query.list();
 		} catch (HibernateException e){
 			 System.out.println(e.getMessage());
