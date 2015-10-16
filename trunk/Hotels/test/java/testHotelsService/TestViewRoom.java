@@ -39,5 +39,15 @@ public class TestViewRoom {
 	       assertTrue(Long.compare(regimenes.get(0).getId(),1l)==0);
 	       assertTrue(Long.compare(regimenes.get(1).getId(),2l)==0);
 		}
+	
+	@Test
+	public void testCheckViewRatesRoom() {
+		List<Tarifa> tarifas = new ArrayList<Tarifa>();
+		tarifas = hoteldao.getTarifasHabitacion("1");
+	       assertTrue(Long.compare(tarifas.get(0).getId(),1l)==0);
+	       assertTrue(Long.compare(tarifas.get(1).getId(),2l)==0);
+	       assertTrue(Long.compare(tarifas.get(2).getId(),3l)==0);
+	       assertTrue(Long.compare(tarifas.get(3).getId(),4l)==0);
+		}
 }
 	
