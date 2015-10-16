@@ -17,11 +17,12 @@ public class HotelResults {
 	private String telefono;
 	private String correoElectronico;
 	private Double precio;
+	private Boolean enTemporada;
 
 	public HotelResults(Long id, String nombre, String calle, String ciudad,
 			String descripcion, int categoria, String telefono,
 			String correoElectronico,
-			Double precio) {
+			Double precio, Boolean enTemporada) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -32,6 +33,13 @@ public class HotelResults {
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
 		this.precio = precio;
+		this.enTemporada=enTemporada;
+	}
+	public Boolean getEnTemporada() {
+		return enTemporada;
+	}
+	public void setEnTemporada(Boolean enTemporada) {
+		this.enTemporada = enTemporada;
 	}
 	public Double getPrecio() {
 		return precio;

@@ -158,8 +158,15 @@ public class HotelDAO {
 		return tipoHabitacion.get(0);
 	}
 
-	public List<Hotel> getHotels(ArrayList<String> keys,ArrayList<String> values) {
+	public List<Hotel> getHotels(ArrayList<String> keys,ArrayList<String> values) throws ParseException {
         List<Hotel> hotelList = new ArrayList<Hotel>();
+        Integer numHabitaciones=0;
+        Boolean preciominimoañadido=false;
+        Boolean preciomaximoañadido=false;
+        Boolean numHabitacionesañadido=false;
+        Boolean servicios=false;
+        Double preciominimo=null;
+        Double preciomaximo=null;
 
     	Iterator itr = values.iterator();
 		try {
@@ -175,41 +182,128 @@ public class HotelDAO {
             // 4. Starting Transaction
             Transaction transaction = session.beginTransaction();
             List<String> conditionsList=new ArrayList<String>();
+            List<String> serviciosList=new ArrayList<String>();
             Boolean orderbyprice=false;
             String condition;
             String sql="FROM Hotel";
             if (!keys.isEmpty()){
             	sql=sql.concat(" where ");
 	            for (String entry : keys){
-	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby")){
-	            		if (!entry.equalsIgnoreCase("orderby")){
-			            		String value=String.valueOf(itr.next());
-			            		if (entry.equalsIgnoreCase("categoria")) sql = sql.concat(entry+ " = "+value);
-			            		else sql=sql.concat(entry+ " LIKE '%"+value+"%'");
-			            		if (itr.hasNext()) sql=sql.concat(" AND ");
+	            	if (entry.equalsIgnoreCase("nombre") || entry.equalsIgnoreCase("ciudad") || entry.equalsIgnoreCase("categoria") || entry.equalsIgnoreCase("calle") || entry.equalsIgnoreCase("orderby") || entry.equalsIgnoreCase("preciominimo") || entry.equalsIgnoreCase("preciomaximo") || entry.equalsIgnoreCase("servicios") || entry.equalsIgnoreCase("numeroHabitaciones")){
+	            		if (!entry.equalsIgnoreCase("orderby") && !entry.equalsIgnoreCase("preciominimo") && !entry.equalsIgnoreCase("preciomaximo")){
+			            		if (entry.equalsIgnoreCase("servicios")){
+			            			sql=sql.concat("e.idHotel=a.id AND ");
+			            			String value=String.valueOf(itr.next());
+			            			serviciosList =new LinkedList<String>(Arrays.asList(value.split(",")));
+			            			Iterator iter=serviciosList.iterator();
+			            			while (iter.hasNext()){
+			            				String condition1=String.valueOf(iter.next());
+			            				sql=sql.concat("e.nombre LIKE '%"+condition1+"%'");
+			            				if (iter.hasNext()){
+			            					sql=sql.concat(" AND ");
+			            				}
+			            			}
+			            			if (itr.hasNext()){
+			            				sql=sql.concat(" AND ");
+			            			}
+			            			servicios=true;
+			            			
+			            		}else{
+			            			if (entry.equalsIgnoreCase("numeroHabitaciones")){
+			            				sql=sql.concat("f.idTipoHabitacion=b.id AND d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id AND f.numero NOT IN (SELECT idHabitacion from Reserva where (fechaEntrada<=:fecha AND fechaSalida>=:fecha))");
+			            				numHabitaciones=Integer.valueOf(String.valueOf(itr.next()));
+			            				numHabitacionesañadido=true;
+			            				if (itr.hasNext()){
+			            					sql.concat(" AND ");
+			            				}
+			            			}else{
+			            				String value=String.valueOf(itr.next());
+					            		if (entry.equalsIgnoreCase("categoria")) sql = sql.concat(entry+ " = "+value);
+					            		else sql=sql.concat(entry+ " LIKE '%"+value+"%'");
+					            		if (itr.hasNext()) sql=sql.concat(" AND ");
+			            			}
+		            				
+			            		}
 	            		}else{
-	            			String value=String.valueOf(itr.next());
-	            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
-	            			if (conditionsList.contains("precio")){
+	            			if (entry.equalsIgnoreCase("preciominimo") || entry.equalsIgnoreCase("preciomaximo")){
+	            				if (!preciominimoañadido && !preciomaximoañadido){
+	            					sql=sql.concat("d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id");
+	            				}
+	            				if (entry.equalsIgnoreCase("preciominimo")){
+	            					sql=sql.concat(" AND d.precio>=:preciominimo");
+	            					preciominimoañadido=true;
+	            					preciominimo=Double.valueOf(String.valueOf(itr.next()));
+	            					orderbyprice=true;
+	            				}else{
+	            					sql=sql.concat(" AND d.precio<=:preciomaximo");
+	            					preciomaximoañadido=true;
+	            					preciomaximo=Double.valueOf(String.valueOf(itr.next()));
+	            					orderbyprice=true;
+	            				}
+	            			}else{
 	            				orderbyprice=true;
-	            				sql=sql.concat("d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id");
-	            				if(keys.indexOf(entry) != keys.size() - 1) sql = sql.concat(" AND ");
-	            				Integer position=conditionsList.indexOf("precio");
-	            				conditionsList.remove("precio");
-	            				conditionsList.add(position, "minprecio");
+		            			String value=String.valueOf(itr.next());
+		            			conditionsList =new LinkedList<String>(Arrays.asList(value.split(",")));
+		            			if (conditionsList.contains("precio")){
+		            				orderbyprice=true;
+		            				sql=sql.concat("d.idRegimen=c.id AND c.idTipoHabitacion=b.id AND b.idHotel=a.id");
+		            				if(keys.indexOf(entry) != keys.size() - 1) sql = sql.concat(" AND ");
+		            				Integer position=conditionsList.indexOf("precio");
+		            				conditionsList.remove("precio");
+		            				conditionsList.add(position, "minprecio");
+		            			}
 	            			}
 	            			
 	            		}
 	            	}
 	            }
-
-	            if (orderbyprice){
+	            if (numHabitacionesañadido){
 	            	sql=sql.concat(" group by a.id");
-	            	sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d ");
+	            	sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d,Habitacion f ");
 	            	sql=sql.replace(" nombre", " a.nombre");
 	            	sql=sql.replace(" ciudad", " a.ciudad");
 	            	sql=sql.replace(" categoria", " a.categoria");
 	            	sql=sql.replace(" calle", " a.calle");
+	            }
+	            if (servicios){
+	            	if (numHabitacionesañadido){
+	            		
+	            		sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d,Servicio e,Habitacion f");
+	            	}else{
+	            		sql=sql.concat(" group by a.id");
+	            		sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d,Servicio e ");
+	            	}
+	            	sql=sql.replace(" nombre", " a.nombre");
+	            	sql=sql.replace(" ciudad", " a.ciudad");
+	            	sql=sql.replace(" categoria", " a.categoria");
+	            	sql=sql.replace(" calle", " a.calle");
+	            }
+	            if (orderbyprice){
+	            	if (servicios){
+	            		if (numHabitacionesañadido){
+	            			sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d,Servicio e, Habitacion f ");
+	            		}else{
+	            			
+	            			sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d,Servicio e ");
+	            		}
+	            		
+	            	}else{
+	            		if(numHabitacionesañadido){
+	            			sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d, Habitacion f ");
+	            		}else{
+	            			sql=sql.concat(" group by a.id");
+	            			sql=sql.replace("FROM Hotel ","select distinct a.id,a.nombre,a.ciudad,a.calle,a.descripcion,a.categoria,a.telefono,a.correoElectronico,a.enTemporada,min(d.precio) as minprecio from Hotel a,TipoHabitacion b, Regimen c,Tarifa d ");
+	            		}
+	            		
+	            	}
+	            	sql=sql.replace(" nombre", " a.nombre");
+	            	sql=sql.replace(" ciudad", " a.ciudad");
+	            	sql=sql.replace(" categoria", " a.categoria");
+	            	sql=sql.replace(" calle", " a.calle");
+	            }
+
+	            if (numHabitacionesañadido){
+	            	sql=sql.concat(" HAVING count(f.numero)>="+numHabitaciones.toString());
 	            }
 	            if (!conditionsList.isEmpty()){
 	            	sql=sql.concat(" ORDER BY ");
@@ -222,6 +316,8 @@ public class HotelDAO {
 	            				if (itr.hasNext()) sql = sql.concat(",");
 	            			}else{
 	            				if (orderbyprice){
+
+	            					System.out.println("Paso por aqui");
 			            			sql=sql.concat("a."+condition);
 			            			if (itr.hasNext()) sql = sql.concat(",");
 	            				}else{
@@ -234,6 +330,17 @@ public class HotelDAO {
 	            }
             }
             Query query = session.createQuery(sql);
+            if (preciominimoañadido){
+            	query.setParameter("preciominimo", preciominimo);
+            }
+            if(preciomaximoañadido){
+            	query.setParameter("preciomaximo",preciomaximo);
+            }
+            if (numHabitacionesañadido){
+            	Date date = new Date();
+            	query.setParameter("fecha", date);
+            }
+            System.out.println(query.toString());
             hotelList = query.list();
             session.getTransaction().commit();
  

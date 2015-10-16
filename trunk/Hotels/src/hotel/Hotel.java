@@ -17,10 +17,22 @@ public class Hotel {
 	private String telefono;
 	private String correoElectronico;
 	private ArrayList<TipoHabitacion> tipoHabitacion;
+	private Boolean enTemporada;
+
+	
+
+	public Boolean getEnTemporada() {
+		return enTemporada;
+	}
+
+	public void setEnTemporada(Boolean enTemporada) {
+		this.enTemporada = enTemporada;
+	}
 
 	public Hotel(Long id, String nombre, String calle, String ciudad,
 			String descripcion, int categoria, String telefono,
-			String correoElectronico, ArrayList<TipoHabitacion> tipoHabitacion) {
+			String correoElectronico, ArrayList<TipoHabitacion> tipoHabitacion,
+			Boolean enTemporada) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -31,6 +43,7 @@ public class Hotel {
 		this.telefono = telefono;
 		this.correoElectronico = correoElectronico;
 		this.tipoHabitacion = tipoHabitacion;
+		this.enTemporada = enTemporada;
 	}
 
 	public ArrayList<TipoHabitacion> getTipoHabitacion() {

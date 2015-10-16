@@ -2,6 +2,7 @@ package testHotelsService;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class TestSearchHotels {
 	List<Hotel> hoteles_BD = new ArrayList<Hotel>();
 	
 	@Test
-	public void testSearchHotelByCity() {
+	public void testSearchHotelByCity(){
 		keys.add("ciudad");
 		values.add("Coristanco");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -25,7 +26,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByName() {
+	public void testSearchHotelByName(){
 		keys.add("nombre");
 		values.add("Buena vista");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -33,7 +34,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByStreet() {
+	public void testSearchHotelByStreet(){
 		keys.add("calle");
 		values.add("Avenida Federico");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -41,7 +42,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByCategory() {
+	public void testSearchHotelByCategory(){
 		keys.add("categoria");
 		values.add("4");
 		hoteles_BD= hoteldao.getHotels(keys, values);

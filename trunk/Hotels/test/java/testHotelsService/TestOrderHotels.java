@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import hotel.Hotel;
 import hotel.HotelDAO;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +19,7 @@ public class TestOrderHotels {
 	List<Hotel> hoteles_BD = new ArrayList<Hotel>();
 	
 	@Test
-	public void testOrderHotelsByName() {
+	public void testOrderHotelsByName(){
 		int i = 0;
 		keys.add("orderby");
 		values.add("nombre");
@@ -32,7 +33,7 @@ public class TestOrderHotels {
 	}
 	
 	@Test
-	public void testOrderHotelsByCategory() {
+	public void testOrderHotelsByCategory(){
 		int i = 0;
 		keys.add("orderby");
 		values.add("categoria");

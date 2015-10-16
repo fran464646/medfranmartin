@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 import hotel.Hotel;
 import hotel.HotelDAO;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class TestFilterHotel {
 	HotelDAO hoteldao = new HotelDAO();
 
 	@Test
-	public void testCheckFilterHotelsByPrice() {
+	public void testCheckFilterHotelsByPrice() throws{
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("preciominimo");
@@ -29,18 +30,18 @@ public class TestFilterHotel {
 	}
 	
 	@Test
-	public void testCheckFilterHotelsByServices() {
+	public void testCheckFilterHotelsByServices(){
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
-		keys.add("servicio");
-		values.add("comida");
+		keys.add("servicios");
+		values.add("Comida");
 		List<Hotel> hoteles = new ArrayList<Hotel>();
 		hoteles = hoteldao.getHotels(keys,values);
 	    assertTrue(Long.compare(hoteles.get(0).getId(),1l)==0);
 	}
 	
 	@Test
-	public void testCheckFilterHotelsByNumberOfAvailableRooms() {
+	public void testCheckFilterHotelsByNumberOfAvailableRooms(){
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("numeroHabitaciones");

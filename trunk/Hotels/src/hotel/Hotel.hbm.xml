@@ -11,5 +11,6 @@
         <property column="categoria" name="categoria" type="java.lang.Integer" />
         <property column="telefono" name="telefono" type="java.lang.String" />
         <property column="correoElectronico" name="correoElectronico" type="java.lang.String" />
+        <property column="enTemporada" name="enTemporada" type="java.lang.Boolean" />
     </class>
 </hibernate-mapping>
