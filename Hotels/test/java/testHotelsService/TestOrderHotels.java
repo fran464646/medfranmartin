@@ -82,8 +82,7 @@ public class TestOrderHotels {
 		int i = 0;
         while(itr.hasNext()){
            Object[] obj = (Object[]) itr.next();
-           //now you have one array of Object for each row
-           String id = String.valueOf(obj[0]); // don't know the type of column CLIENT assuming String
+           String id = String.valueOf(obj[0]);
            assertTrue(Long.compare(Long.valueOf(id),hoteles.get(i).getId())==0);
            i++;
         }
