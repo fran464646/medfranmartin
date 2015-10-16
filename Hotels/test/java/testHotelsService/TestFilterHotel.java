@@ -72,4 +72,32 @@ public class TestFilterHotel {
 	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),8l)==0);
 	}
 	
+	@Test
+	public void testCheckFilterHotelsByAvailability() throws ParseException{
+		ArrayList<String> keys = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<String>();
+		keys.add("fechaEntrada");
+		keys.add("fechaSalida");
+		values.add("13/10/2015");
+		values.add("14/10/2015");
+		List<Hotel> hoteles = new ArrayList<Hotel>();
+		hoteles = hoteldao.getHotels(keys,values);
+		
+		Iterator itr = hoteles.iterator();
+	       Object[] obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),1l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),3l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),4l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),5l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),6l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),7l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),8l)==0);
+	}
+	
 }
