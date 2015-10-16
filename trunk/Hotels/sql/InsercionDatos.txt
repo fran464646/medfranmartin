@@ -1,0 +1,1675 @@
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(1,
+'Escala',
+'Arteixo',
+'Avenida quitela',
+'Hotel en buen estado',
+3,
+981752432,
+'hotelescala@hotmail.com',
+true);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(2,
+'Gran hotel',
+'Carballo',
+'Avenida Federico',
+'Hotel en muy buen estado',
+4,
+981742432,
+'hotelgran@hotmail.com',
+false);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(3,
+'America',
+'Coristanco',
+'Avenida Garcilaso',
+'Hotel en buen estado',
+3,
+981732432,
+'hotelamerica@hotmail.com',
+false);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(4,
+'Trinidad',
+'Baio',
+'Avenida Gonzalo',
+'Hotel de gran capacidad',
+4,
+981732532,
+'hoteltrinidad@hotmail.com',
+true);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(5,
+'Buena vista',
+'Vimianzo',
+'Avenida Alfredo',
+'Hotel de gran entidad',
+2,
+981712532,
+'hotelbuenavista@hotmail.com',
+true);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(6,
+'Vista alegre',
+'Ponte do porto',
+'Avenida suarez',
+'Hotel de lujo',
+5,
+981736532,
+'hotelvistaalegre@hotmail.com',
+true);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(7,
+'Vista buena',
+'Camariñas',
+'Avenida 8',
+'Hotel en mal estado',
+1,
+981736522,
+'hotelvistabuena@hotmail.com',
+false);
+
+INSERT INTO `ws`.`hotel`
+(`id`,
+`nombre`,
+`ciudad`,
+`calle`,
+`descripcion`,
+`categoria`,
+`telefono`,
+`correoElectronico`,
+`enTemporada`)
+VALUES
+(8,
+'Vista',
+'Coristanco',
+'Avenida 8',
+'Hotel malo',
+2,
+981736523,
+'hotelvista@hotmail.com',
+true);
+
+*****************************************************************
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(1,
+1,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(2,
+1,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(3,
+2,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(4,
+2,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(5,
+3,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(6,
+3,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(7,
+4,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(8,
+4,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(9,
+5,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(10,
+5,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(11,
+6,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(12,
+6,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(13,
+7,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(14,
+7,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(15,
+8,
+'Estándar',
+2,
+2,
+'Individual',
+true);
+
+INSERT INTO `ws`.`tipohabitacion`
+(`id`,
+`idHotel`,
+`nombre`,
+`capacidad`,
+`tamano`,
+`tipoCama`,
+`oferta`)
+VALUES
+(16,
+8,
+'Suite',
+2,
+2,
+'Matrimonio',
+false);
+
+****************************************************
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(1,
+'Media pensión',
+'Desayuno y comida',
+1);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(2,
+'Pensión completa',
+'Desayuno,comida y cena',
+1);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(3,
+'Media pensión',
+'Desayuno y comida',
+2);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(4,
+'Pensión completa',
+'Desayuno,comida y cena',
+2);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(5,
+'Media pensión',
+'Desayuno y comida',
+3);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(6,
+'Pensión completa',
+'Desayuno,comida y cena',
+3);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(7,
+'Media pensión',
+'Desayuno y comida',
+4);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(8,
+'Pensión completa',
+'Desayuno,comida y cena',
+4);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(9,
+'Media pensión',
+'Desayuno y comida',
+5);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(10,
+'Pensión completa',
+'Desayuno,comida y cena',
+5);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(11,
+'Media pensión',
+'Desayuno y comida',
+6);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(12,
+'Pensión completa',
+'Desayuno,comida y cena',
+6);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(13,
+'Media pensión',
+'Desayuno y comida',
+7);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(14,
+'Pensión completa',
+'Desayuno,comida y cena',
+7);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(15,
+'Media pensión',
+'Desayuno y comida',
+8);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(16,
+'Pensión completa',
+'Desayuno,comida y cena',
+8);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(17,
+'Media pensión',
+'Desayuno y comida',
+9);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(18,
+'Pensión completa',
+'Desayuno,comida y cena',
+9);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(19,
+'Media pensión',
+'Desayuno y comida',
+10);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(20,
+'Pensión completa',
+'Desayuno,comida y cena',
+10);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(21,
+'Media pensión',
+'Desayuno y comida',
+11);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(22,
+'Pensión completa',
+'Desayuno,comida y cena',
+11);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(23,
+'Media pensión',
+'Desayuno y comida',
+12);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(24,
+'Pensión completa',
+'Desayuno,comida y cena',
+12);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(25,
+'Media pensión',
+'Desayuno y comida',
+13);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(26,
+'Pensión completa',
+'Desayuno,comida y cena',
+13);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(27,
+'Media pensión',
+'Desayuno y comida',
+14);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(28,
+'Pensión completa',
+'Desayuno,comida y cena',
+14);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(29,
+'Media pensión',
+'Desayuno y comida',
+15);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(30,
+'Pensión completa',
+'Desayuno,comida y cena',
+15);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(31,
+'Media pensión',
+'Desayuno y comida',
+16);
+
+INSERT INTO `ws`.`regimen`
+(`id`,
+`nombre`,
+`condiciones`,
+`idTipoHabitacion`)
+VALUES
+(32,
+'Pensión completa',
+'Desayuno,comida y cena',
+16);
+
+*****************************************************************
+
+
+insert into Tarifa values (1,1,1,"Low cost","Tarifa barata",24.50);
+
+insert into Tarifa values (2,1,1,"Estandar","Tarifa estandar",35.00);
+
+insert into Tarifa values (3,1,2,"Low cost","Tarifa barata",10.00);
+
+insert into Tarifa values (4,1,2,"Estandar","Tarifa estandar",20.00);
+
+insert into Tarifa values (5,2,3,"Deluxe","Tarifa lujosa",1200.00);
+
+insert into Tarifa values (6,2,3,"Deluxe con vistas","Tarifa lujosa con vistas",1900.00);
+
+insert into Tarifa values (7,2,4,"Basica","Tarifa basica",34.00);
+
+insert into Tarifa values (8,2,4,"Basica con seguro","Tarifa basica con seguro",45.00);
+
+insert into Tarifa values (9,3,5,"Estandar con seguro","Tarifa estandar con desayuno incluido",50.00);
+
+insert into Tarifa values (10,3,5,"Estandar sin seguro","Tarifa estandar sin seguro",35.00);
+
+insert into Tarifa values (11,3,6,"Rompedora","Tarifa al mejor precio",15.00);
+
+insert into Tarifa values (12,3,6,"Prepago","Tarifa prepago",34.00);
+
+insert into Tarifa values (13,4,7,"Flexible","Tarifa flexible",19.90);
+
+insert into Tarifa values (14,4,7,"Low cost","Tarifa barata",24.50);
+
+insert into Tarifa values (15,4,8,"Acomodada","Tarifa acomodada",30.42);
+
+insert into Tarifa values (16,4,8,"Low cost","Tarifa barata",33.47);
+
+insert into Tarifa values (17,5,9,"Rastrera","Tarifa barata",5.50);
+
+insert into Tarifa values (18,5,9,"Conformista","Tarifa conformista",15.00);
+
+insert into Tarifa values (19,5,10,"Elaborada","Tarifa elaborada",97.25);
+
+insert into Tarifa values (20,5,10,"Innovadora","Tarifa innovadora",35.70);
+
+insert into Tarifa values (21,6,11,"low cost","Tarifa barata",23.74);
+
+insert into Tarifa values (22,6,11,"Ingeniosa","Tarifa ingeniosa",125.36);
+
+insert into Tarifa values (23,6,12,"Rompecarteras","Tarifa nada barata",3520.12);
+
+insert into Tarifa values (24,6,12,"Presumecarteras","Tarifa mas cara aun",5236.54);
+
+insert into Tarifa values (25,7,13,"Normalita","Tarifa normal sin tonteria",45.00);
+
+insert into Tarifa values (26,7,13,"Volveras","Tarifa convencedora",15.50);
+
+insert into Tarifa values (27,7,14,"Familiar","Tarifa para la familia",250.25);
+
+insert into Tarifa values (28,7,14,"Single plus","Tarifa para solteros exigentes",1200);
+
+insert into Tarifa values (29,8,15,"Single","Tarifa para solteros conformistas",50.00);
+
+insert into Tarifa values (30,8,15,"Romantica","Tarifa pensada para los mas romanticos",75.00);
+
+insert into Tarifa values (31,8,16,"Bienvenida","Tarifa de bienvenida",12.50);
+
+insert into Tarifa values (32,8,16,"Despedida","Tarifa despedida",500.25);
+
+insert into Tarifa values (33,9,17,"Malo sera","Tarifa para los mas optimistas",85.50);
+
+insert into Tarifa values (34,9,17,"Trabajadores","Tarifa para los trabajadores de la zona",20.00);
+
+insert into Tarifa values (35,9,18,"Anticrisis","Tarifa buena,bonita y barata",9.00);
+
+insert into Tarifa values (36,9,18,"No da ni pa gastos","Tarifa por cierre",5.00);
+
+insert into Tarifa values (37,10,19,"Fondo inversion","Tarifa para los mas afortunados",5000.00);
+
+insert into Tarifa values (38,10,19,"A largo plazo","Tarifa baja en intereses",64.89);
+
+insert into Tarifa values (39,10,20,"Duerme bien","Tarifa reconfortable",360.00);
+
+insert into Tarifa values (40,10,20,"Quedate","Tarifa que rompe con precios",14.30);
+
+insert into Tarifa values (41,11,21,"Quedadas","Tarifa de reencuentros",245.36);
+
+insert into Tarifa values (42,11,21,"Sindoplus","Tarifa sin competencia",8000.00);
+
+insert into Tarifa values (43,11,22,"Depende","Tarifa gallega",145.00);
+
+insert into Tarifa values (44,11,22,"Duerme mas","Tarifa que alarga tus noches",160.00);
+
+insert into Tarifa values (45,12,23,"Light Night","Tarifa para desconectar del estrés laboral",40.00);
+
+insert into Tarifa values (46,12,23,"Buenas noches","Tarifa pensada para dormir",180.00);
+
+insert into Tarifa values (47,12,24,"Ven","Tarifa arropadora",60.28);
+
+insert into Tarifa values (48,12,24,"Largate","Tarifa de despedida",450.00);
+
+insert into Tarifa values (49,13,25,"Facturadora","Tarifa clin clin",6500.00);
+
+insert into Tarifa values (50,13,25,"Surrealista","Tarifa nada creible",950.00);
+
+insert into Tarifa values (51,13,26,"Verosimil","Tarifa creible",110.25);
+
+insert into Tarifa values (52,13,26,"Letra pequeña","Tarifa para los mas curiosos",87.00);
+
+insert into Tarifa values (53,14,27,"Disfruta","Tarifa para disfrutar de tus noches libres",400.00);
+
+insert into Tarifa values (54,14,27,"Gasta","Tarifa para derrochar sin limites",6900.00);
+
+insert into Tarifa values (55,14,28,"Ahorra","Tarifa barata",26.00);
+
+insert into Tarifa values (56,14,28,"Flexy","Tarifa flexible",48.00);
+
+insert into Tarifa values (57,15,29,"Controla","Tarifa calculadora",30.00);
+
+insert into Tarifa values (58,15,29,"Agotadora","Tarifa para no dormir",7500.00);
+
+insert into Tarifa values (59,15,30,"Tu mismo","Tarifa que crea incertidumbre",190.00);
+
+insert into Tarifa values (60,15,30,"Buen recaudo","Tarifa para llevar buena cuenta",7999.99);
+
+insert into Tarifa values (61,16,31,"Impactante","Tarifa que sorprende verla",9.00);
+
+insert into Tarifa values (62,16,31,"Normalita","Tarifa de toda la vida",40.00);
+
+insert into Tarifa values (63,16,32,"Lleva cuenta","Tarifa para no pegar ojo",6900.95);
+
+insert into Tarifa values (64,16,32,"Ojo","Tarifa que te mantiene en alerta",5475.23);
+
+
+*****************************************************************
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(1,
+1);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(2,
+1);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(3,
+1);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(4,
+2);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(5,
+2);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(6,
+2);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(7,
+3);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(8,
+3);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(9,
+3);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(10,
+4);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(11,
+4);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(12,
+4);
+
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(13,
+5);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(14,
+5);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(15,
+5);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(16,
+6);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(17,
+6);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(18,
+6);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(19,
+7);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(20,
+7);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(21,
+7);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(22,
+8);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(23,
+8);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(24,
+8);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(25,
+9);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(26,
+9);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(27,
+9);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(28,
+10);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(29,
+10);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(30,
+10);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(31,
+11);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(32,
+11);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(33,
+11);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(34,
+12);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(35,
+12);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(36,
+12);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(37,
+13);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(38,
+13);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(39,
+13);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(40,
+14);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(41,
+14);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(42,
+14);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(43,
+15);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(44,
+15);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(45,
+15);
+
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(46,
+16);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(47,
+16);
+
+INSERT INTO `ws`.`habitacion`
+(`numero`,
+`idTipoHabitacion`)
+VALUES
+(48,
+16);
+
+*****************************************************************
+
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(1,
+1,
+1,
+'Martin',
+'Quinteiro',
+'Santos',
+'martin.quinteiro@udc.es',
+666678510,
+1234567890987654321,
+NULL,
+'2015/10/13',
+'2015/10/14',
+'2015/10/19');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(2,
+2,
+4,
+'Francisco',
+'Pais',
+'Fondo',
+'francisco.pais1@udc.es',
+665247882,
+1254447856999962,
+NULL,
+'2015/10/14',
+'2015/10/15',
+'2015/10/21');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(3,
+3,
+3,
+'Xoan',
+'Antelo',
+'Castro',
+'xoan.antelo@udc.es',
+612555471,
+214455877452100,
+NULL,
+'2015/10/15',
+'2015/10/16',
+'2015/10/17');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(4,
+4,
+5,
+'Cristian',
+'Canosa',
+'Perez',
+'cristian.canosa@udc.es',
+611258700,
+123546655587452,
+NULL,
+'2015/10/10',
+'2015/10/11',
+'2015/10/18');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(5,
+5,
+6,
+'Leandro',
+'Suarez',
+'Gonzalez',
+'leandro.suarez@udc.es',
+620544136,
+03200015458996,
+NULL,
+'2015/10/15',
+'2015/10/16',
+'2015/10/17');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(6,
+6,
+8,
+'Leandro',
+'Suarez',
+'Gonzalez',
+'leandro.suarez@udc.es',
+620544136,
+03200015458996,
+NULL,
+'2015/10/15',
+'2015/10/16',
+'2015/10/19');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(7,
+7,
+9,
+'Jorge',
+'Rodriguez',
+'Iglesias',
+'jorge.rodriguez@udc.es',
+622051149,
+2554136698547,
+NULL,
+'2015/10/10',
+'2015/10/12',
+'2015/10/18');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(8,
+8,
+11,
+'Carlos',
+'Vazquez',
+'Martinez',
+'carlos.vazquez.martinez@udc.es',
+666255873,
+0000255869305,
+NULL,
+'2015/10/13',
+'2015/10/14',
+'2015/10/29');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(9,
+9,
+10,
+'Adrian',
+'Lopez',
+'Lopez',
+'adrian.lopez@udc.es',
+601256388,
+2111458036958,
+NULL,
+'2015/10/13',
+'2015/10/14',
+'2015/10/21');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(10,
+10,
+14,
+'Raul',
+'Sanchez',
+'Lema',
+'raul.sanchez@udc.es',
+611523000,
+5210000256987,
+NULL,
+'2015/10/13',
+'2015/10/14',
+'2015/10/23');
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(11,
+11,
+15,
+'Javier',
+'Gutierrez',
+'Rato',
+'javier.gutierrez@udc.es',
+602547763,
+0002548693552,
+NULL,
+'2015/10/12',
+'2015/10/13',
+'2015/10/20');
+
+
+INSERT INTO `ws`.`reserva`
+(`id`,
+`idHabitacion`,
+`idTarifa`,
+`nombre`,
+`apellido1`,
+`apellido2`,
+`email`,
+`telefono`,
+`numCuenta`,
+`observacion`,
+`fechaRealizacion`,
+`fechaEntrada`,
+`fechaSalida`)
+VALUES
+(12,
+12,
+15,
+'Santiago',
+'Suarez',
+'Campelo',
+'santiago.suarez@udc.es',
+611205477,
+20154889652102,
+NULL,
+'2015/10/12',
+'2015/10/13',
+'2015/10/20');
+
+
+*****************************************************************
+
+INSERT INTO `ws`.`servicio`
+(`id`,
+`idTipoHabitacion`,
+`idHotel`,
+`nombre`,
+`descripcion`,
+`precio`)
+VALUES
+(1,
+1,
+1,
+'Comida',
+'Comida en la habitacion',
+50);
+INSERT INTO `ws`.`servicio`
+(`id`,
+`idTipoHabitacion`,
+`idHotel`,
+`nombre`,
+`descripcion`,
+`precio`)
+VALUES
+(2,
+1,
+2,
+'Masaje',
+'Masaje en la habitacion',
+70);
