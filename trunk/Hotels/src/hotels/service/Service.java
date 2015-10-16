@@ -17,6 +17,7 @@ import javax.ws.rs.QueryParam;
 
 import regimen.Regimen;
 import servicio.Servicio;
+import tarifa.Tarifa;
 import tipoHabitacion.TipoHabitacion;
 
 import com.google.gson.Gson;
@@ -24,6 +25,16 @@ import com.google.gson.Gson;
 @Path("/")
 public class Service {
  
+	@GET
+	@Path("/{id_hotel}/Habitaciones/{id_habitacion}/Tarifas")
+	public String TarifasHabitacion(@PathParam("id_habitacion")String id_habitacion) throws ParseException{
+		String habitacionJSON;
+		List<Tarifa> tarifasHabitacion=new HotelDAO().getTarifasHabitacion(id_habitacion);
+		Gson gson = new Gson();
+        habitacionJSON = gson.toJson(tarifasHabitacion);
+        return habitacionJSON;
+	}
+	
 	@GET
 	@Path("/{id_hotel}/Habitaciones/{id_habitacion}/Regimenes")
 	public String RegimenesHabitacion(@PathParam("id_habitacion")String id_habitacion) throws ParseException{

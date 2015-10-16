@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import regimen.Regimen;
 import servicio.Servicio;
+import tarifa.Tarifa;
 import tipoHabitacion.TipoHabitacion;
 
 public class TestViewRoom {
