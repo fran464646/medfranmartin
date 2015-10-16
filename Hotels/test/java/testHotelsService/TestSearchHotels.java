@@ -18,7 +18,7 @@ public class TestSearchHotels {
 	List<Hotel> hoteles_BD = new ArrayList<Hotel>();
 	
 	@Test
-	public void testSearchHotelByCity(){
+	public void testSearchHotelByCity() throws ParseException{
 		keys.add("ciudad");
 		values.add("Coristanco");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -26,7 +26,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByName(){
+	public void testSearchHotelByName() throws ParseException{
 		keys.add("nombre");
 		values.add("Buena vista");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -34,7 +34,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByStreet(){
+	public void testSearchHotelByStreet() throws ParseException{
 		keys.add("calle");
 		values.add("Avenida Federico");
 		hoteles_BD= hoteldao.getHotels(keys, values);
@@ -42,7 +42,7 @@ public class TestSearchHotels {
 	}
 	
 	@Test
-	public void testSearchHotelByCategory(){
+	public void testSearchHotelByCategory() throws ParseException{
 		keys.add("categoria");
 		values.add("4");
 		hoteles_BD= hoteldao.getHotels(keys, values);

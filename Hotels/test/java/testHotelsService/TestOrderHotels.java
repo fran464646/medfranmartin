@@ -19,7 +19,7 @@ public class TestOrderHotels {
 	List<Hotel> hoteles_BD = new ArrayList<Hotel>();
 	
 	@Test
-	public void testOrderHotelsByName(){
+	public void testOrderHotelsByName() throws ParseException{
 		int i = 0;
 		keys.add("orderby");
 		values.add("nombre");
@@ -33,7 +33,7 @@ public class TestOrderHotels {
 	}
 	
 	@Test
-	public void testOrderHotelsByCategory(){
+	public void testOrderHotelsByCategory() throws ParseException{
 		int i = 0;
 		keys.add("orderby");
 		values.add("categoria");
@@ -47,7 +47,7 @@ public class TestOrderHotels {
 	}
 	
 	@Test
-	public void testOrderHotelsByPrice() {
+	public void testOrderHotelsByPrice() throws ParseException {
 		keys.add("orderby");
 		values.add("precio");
 		hoteles_BD =  hoteldao.getHotels(keys, values);
