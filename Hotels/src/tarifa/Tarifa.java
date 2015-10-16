@@ -6,14 +6,14 @@ public class Tarifa {
 	private Long idRegimen;
 	private String nombre;
 	private String descripcion;
-	private String precio;
+	private Double precio;
 	
 	public Tarifa(){
 		
 	}
 	
 	public Tarifa(Long id, Long idTipoHabitacion, Long idRegimen,
-			String nombre, String descripcion, String precio) {
+			String nombre, String descripcion, Double precio) {
 		super();
 		this.id = id;
 		this.idTipoHabitacion = idTipoHabitacion;
@@ -52,10 +52,10 @@ public class Tarifa {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(String precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 }

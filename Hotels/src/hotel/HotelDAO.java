@@ -23,6 +23,7 @@ import org.hibernate.cfg.Configuration;
 
 import regimen.Regimen;
 import servicio.Servicio;
+import tarifa.Tarifa;
 import tipoHabitacion.TipoHabitacion;
 
 public class HotelDAO {
@@ -30,6 +31,32 @@ public class HotelDAO {
 	public HotelDAO(){
 		
 	}
+	
+	public List<Tarifa> getTarifasHabitacion(String id_habitacion){
+		List<Tarifa> tarifasHabitacion=new ArrayList<Tarifa>();
+		try{
+		// 1. configuring hibernate
+	        Configuration configuration = new Configuration().configure();
+	
+	        // 2. create sessionfactory
+	        SessionFactory sessionFactory = configuration.buildSessionFactory();
+	
+	        // 3. Get Session object
+	        Session session = sessionFactory.openSession();
+	
+	        // 4. Starting Transaction
+	        Transaction transaction = session.beginTransaction();
+			String sql="FROM Tarifa where idTipoHabitacion =:id ";
+			Query query=session.createQuery(sql);
+			query.setParameter("id", Long.valueOf(id_habitacion));
+			tarifasHabitacion=query.list();
+		} catch (HibernateException e){
+			 System.out.println(e.getMessage());
+	         System.out.println("error");
+		}
+		return tarifasHabitacion;
+	}
+	
 	
 	public List<Regimen> getRegimenesHabitacion(String id_habitacion){
 		List<Regimen> regimenesHabitacion=new ArrayList<Regimen>();
