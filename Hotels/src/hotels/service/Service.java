@@ -99,9 +99,10 @@ public class Service {
         habitacionesJSON = gson.toJson(habitacionesfinal);
         return habitacionesJSON;
 	}
+	
 	@GET
 	@Path("/")
-    public String Hoteles(@QueryParam("nombre") String nombre,@QueryParam("ciudad") String ciudad,@QueryParam("calle") String calle,@QueryParam("categoria") String categoria,@QueryParam("orderby") String orderby){
+    public String Hoteles(@QueryParam("nombre") String nombre,@QueryParam("ciudad") String ciudad,@QueryParam("calle") String calle,@QueryParam("categoria") String categoria,@QueryParam("orderby") String orderby,@QueryParam("preciominimo") String preciominimo,@QueryParam("preciomaximo") String preciomaximo, @QueryParam("servicios") String servicios, @QueryParam("numeroHabitaciones") String numeroHabitaciones){
 
 		ArrayList<String> keys=new ArrayList<String>();
         ArrayList<String> values=new ArrayList<String>();
@@ -126,12 +127,29 @@ public class Service {
         	keys.add("orderby");
         	values.add(orderby);
         }
+        if(preciominimo!=null){
+        	keys.add("preciominimo");
+        	values.add(preciominimo);
+        }
+        if(preciomaximo!=null){
+        	keys.add("preciomaximo");
+        	values.add(preciomaximo);
+        }
+        if(servicios!=null){
+        	keys.add("servicios");
+        	values.add(servicios);
+        }
+
+        if(numeroHabitaciones!=null){
+        	keys.add("numeroHabitaciones");
+        	values.add(numeroHabitaciones);
+        }
         List<Hotel> hotelList = new ArrayList<Hotel>();
         List<HotelResults> hotelListResult = new ArrayList<HotelResults>();
         try
         {
         hotelList = new HotelDAO().getHotels(keys,values);
-        if (orderby!=null && orderby.contains("precio")){
+        if ((orderby!=null && orderby.contains("precio"))||servicios!=null||numeroHabitaciones!=null||preciominimo!=null||preciomaximo!=null){
 	        Iterator itr = hotelList.iterator();
 	        while(itr.hasNext()){
 	           Object[] obj = (Object[]) itr.next();
@@ -144,8 +162,9 @@ public class Service {
 	           Integer categoria1 = Integer.valueOf(String.valueOf(obj[5]));
 	           String telefono = String.valueOf(obj[6]);
 	           String correoElectronico = String.valueOf(obj[7]);
-	           Double precio = Double.valueOf(String.valueOf(obj[8]));
-	           HotelResults hotel=new HotelResults(id,nombre1,calle1,ciudad1,descripcion,categoria1,telefono,correoElectronico,precio);
+	           Boolean enTemporada = Boolean.valueOf(String.valueOf(obj[8]));
+	           Double precio = Double.valueOf(String.valueOf(obj[9]));
+	           HotelResults hotel=new HotelResults(id,nombre1,calle1,ciudad1,descripcion,categoria1,telefono,correoElectronico,precio,enTemporada);
 	           hotelListResult.add(hotel);
 	        }
 	        Gson gson = new Gson();
