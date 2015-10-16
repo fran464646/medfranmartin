@@ -21,12 +21,38 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import servicio.Servicio;
 import tipoHabitacion.TipoHabitacion;
 
 public class HotelDAO {
 	
 	public HotelDAO(){
 		
+	}
+	
+	public List<Servicio> getServiciosHabitacion(String id_habitacion){
+		List<Servicio> serviciosHabitacion=new ArrayList<Servicio>();
+		try{
+		// 1. configuring hibernate
+	        Configuration configuration = new Configuration().configure();
+	
+	        // 2. create sessionfactory
+	        SessionFactory sessionFactory = configuration.buildSessionFactory();
+	
+	        // 3. Get Session object
+	        Session session = sessionFactory.openSession();
+	
+	        // 4. Starting Transaction
+	        Transaction transaction = session.beginTransaction();
+			String sql="FROM Servicio where idTipoHabitacion =:id ";
+			Query query=session.createQuery(sql);
+			query.setParameter("id", Long.valueOf(id_habitacion));
+			serviciosHabitacion=query.list();
+		} catch (HibernateException e){
+			 System.out.println(e.getMessage());
+	         System.out.println("error");
+		}
+		return serviciosHabitacion;
 	}
 	
 	public TipoHabitacion getHabitacion(String id_habitacion){
