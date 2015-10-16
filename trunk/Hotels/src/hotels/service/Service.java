@@ -147,7 +147,7 @@ public class Service {
 	
 	@GET
 	@Path("/")
-    public String Hoteles(@QueryParam("nombre") String nombre,@QueryParam("ciudad") String ciudad,@QueryParam("calle") String calle,@QueryParam("categoria") String categoria,@QueryParam("orderby") String orderby,@QueryParam("preciominimo") String preciominimo,@QueryParam("preciomaximo") String preciomaximo, @QueryParam("servicios") String servicios, @QueryParam("numeroHabitaciones") String numeroHabitaciones){
+    public String Hoteles(@QueryParam("nombre") String nombre,@QueryParam("ciudad") String ciudad,@QueryParam("calle") String calle,@QueryParam("categoria") String categoria,@QueryParam("orderby") String orderby,@QueryParam("preciominimo") String preciominimo,@QueryParam("preciomaximo") String preciomaximo, @QueryParam("servicios") String servicios, @QueryParam("numeroHabitaciones") String numeroHabitaciones, @QueryParam("fechaEntrada") String fechaEntrada, @QueryParam("fechaSalida") String fechaSalida){
 
 		ArrayList<String> keys=new ArrayList<String>();
         ArrayList<String> values=new ArrayList<String>();
@@ -189,12 +189,20 @@ public class Service {
         	keys.add("numeroHabitaciones");
         	values.add(numeroHabitaciones);
         }
+        if(fechaEntrada!=null){
+        	keys.add("fechaEntrada");
+        	values.add(fechaEntrada);
+        }
+        if(fechaSalida!=null){
+        	keys.add("fechaSalida");
+        	values.add(fechaSalida);
+        }
         List<Hotel> hotelList = new ArrayList<Hotel>();
         List<HotelResults> hotelListResult = new ArrayList<HotelResults>();
         try
         {
         hotelList = new HotelDAO().getHotels(keys,values);
-        if ((orderby!=null && orderby.contains("precio"))||servicios!=null||numeroHabitaciones!=null||preciominimo!=null||preciomaximo!=null){
+        if ((orderby!=null && orderby.contains("precio"))||servicios!=null||numeroHabitaciones!=null||preciominimo!=null||preciomaximo!=null||fechaEntrada!=null||fechaSalida!=null){
 	        Iterator itr = hotelList.iterator();
 	        while(itr.hasNext()){
 	           Object[] obj = (Object[]) itr.next();
