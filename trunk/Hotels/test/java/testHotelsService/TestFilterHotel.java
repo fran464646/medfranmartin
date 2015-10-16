@@ -6,6 +6,7 @@ import hotel.HotelDAO;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class TestFilterHotel {
 	HotelDAO hoteldao = new HotelDAO();
 
 	@Test
-	public void testCheckFilterHotelsByPrice() throws{
+	public void testCheckFilterHotelsByPrice() throws ParseException{
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("preciominimo");
@@ -25,35 +26,50 @@ public class TestFilterHotel {
 		values.add("120");
 		List<Hotel> hoteles = new ArrayList<Hotel>();
 		hoteles = hoteldao.getHotels(keys,values);
-	    assertTrue(Long.compare(hoteles.get(0).getId(),3l)==0);
-	    assertTrue(Long.compare(hoteles.get(1).getId(),7l)==0);
+		
+		Iterator itr = hoteles.iterator();
+	       Object[] obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),3l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),7l)==0);
 	}
 	
 	@Test
-	public void testCheckFilterHotelsByServices(){
+	public void testCheckFilterHotelsByServices() throws ParseException{
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("servicios");
 		values.add("Comida");
 		List<Hotel> hoteles = new ArrayList<Hotel>();
 		hoteles = hoteldao.getHotels(keys,values);
-	    assertTrue(Long.compare(hoteles.get(0).getId(),1l)==0);
+		
+		Iterator itr = hoteles.iterator();
+	       Object[] obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),1l)==0);
 	}
 	
 	@Test
-	public void testCheckFilterHotelsByNumberOfAvailableRooms(){
+	public void testCheckFilterHotelsByNumberOfAvailableRooms() throws ParseException{
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("numeroHabitaciones");
 		values.add("3");
 		List<Hotel> hoteles = new ArrayList<Hotel>();
 		hoteles = hoteldao.getHotels(keys,values);
-	    assertTrue(Long.compare(hoteles.get(0).getId(),3l)==0);
-	    assertTrue(Long.compare(hoteles.get(1).getId(),4l)==0);
-	    assertTrue(Long.compare(hoteles.get(2).getId(),5l)==0);
-	    assertTrue(Long.compare(hoteles.get(3).getId(),6l)==0);
-	    assertTrue(Long.compare(hoteles.get(4).getId(),7l)==0);
-	    assertTrue(Long.compare(hoteles.get(5).getId(),8l)==0);
+		
+		Iterator itr = hoteles.iterator();
+	       Object[] obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),3l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),4l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),5l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),6l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),7l)==0);
+	       obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),8l)==0);
 	}
 	
 }
