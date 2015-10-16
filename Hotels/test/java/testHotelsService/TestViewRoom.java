@@ -10,6 +10,7 @@ import hotel.HotelDAO;
 
 import org.junit.Test;
 
+import regimen.Regimen;
 import servicio.Servicio;
 import tipoHabitacion.TipoHabitacion;
 
@@ -27,11 +28,16 @@ public class TestViewRoom {
 	public void testCheckViewServicesRoom() {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		servicios = hoteldao.getServiciosHabitacion("1");
-		Iterator itr = servicios.iterator();
-	       Object[] obj = (Object[]) itr.next();
-	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),1l)==0);
-	       obj = (Object[]) itr.next();
-	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),2l)==0);
+	       assertTrue(Long.compare(servicios.get(0).getId(),1l)==0);
+	       assertTrue(Long.compare(servicios.get(1).getId(),2l)==0);
+		}
+	
+	@Test
+	public void testCheckViewRegimesRoom() {
+		List<Regimen> regimenes = new ArrayList<Regimen>();
+		regimenes = hoteldao.getRegimenesHabitacion("1");
+	       assertTrue(Long.compare(regimenes.get(0).getId(),1l)==0);
+	       assertTrue(Long.compare(regimenes.get(1).getId(),2l)==0);
 		}
 }
 	
