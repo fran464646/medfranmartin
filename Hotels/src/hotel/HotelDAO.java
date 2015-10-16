@@ -22,6 +22,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import regimen.Regimen;
+import reserva.Reserva;
 import servicio.Servicio;
 import tarifa.Tarifa;
 import tipoHabitacion.TipoHabitacion;
@@ -349,6 +350,87 @@ public class HotelDAO {
             System.out.println("error");
         }
         return hotelList;
+	}
+	
+	public String doReserva(String id_hotel,String id_habitacion,String id_tarifa,String fechaEntrada,String fechaSalida,String nombre,String apellido1,String apellido2,String email,String telefono,String numCuenta,String observacion) throws ParseException{
+		List<String> numberofrooms=new ArrayList<String>();
+		try{
+		// 1. configuring hibernate
+	        Configuration configuration = new Configuration().configure();
+	
+	        // 2. create sessionfactory
+	        SessionFactory sessionFactory = configuration.buildSessionFactory();
+	
+	        // 3. Get Session object
+	        Session session = sessionFactory.openSession();
+	
+	        // 4. Starting Transaction
+	        Transaction transaction = session.beginTransaction();
+	        String sql="from Reserva";
+	        Query query=session.createQuery(sql);
+	        List<Reserva> reservas=query.list();
+	        Long idultimareserva=reservas.get(reservas.size()-1).getId()+1;
+			sql="select f.numero from TipoHabitacion b,Habitacion f where f.idTipoHabitacion=b.id AND f.idTipoHabitacion=:id_habitacion AND b.idHotel=:hotelid AND f.numero NOT IN (SELECT idHabitacion from Reserva where (fechaEntrada<=:fechaEntrada AND fechaSalida>=:fechaEntrada) OR (fechaEntrada>=:fechaEntrada AND fechaSalida<=:fechaSalida) OR ((fechaEntrada>=:fechaEntrada AND fechaEntrada<=:fechaSalida) AND fechaSalida>=:fechaSalida)) group by b.id";
+			query=session.createQuery(sql);
+			query.setParameter("hotelid", Long.valueOf(id_hotel));
+			query.setParameter("id_habitacion", Long.valueOf(id_habitacion));
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        Date date=formatter.parse(fechaEntrada);
+	        query.setParameter("fechaEntrada", date);
+	        formatter = new SimpleDateFormat("dd/MM/yyyy");
+	        date=formatter.parse(fechaSalida);
+	        query.setParameter("fechaSalida", date);
+			numberofrooms=query.list();
+			if (numberofrooms.isEmpty()){
+				return "La combinacion de (habitacion,tarifa) seleccionada no se encuentra disponible para las fechas seleccionadas.";
+			}else{
+				Long idHabitacion=Long.valueOf(String.valueOf(numberofrooms.get(0)));
+				Reserva reserva=new Reserva();
+				reserva.setId(idultimareserva);
+				reserva.setIdHabitacion(idHabitacion);
+				reserva.setIdTarifa(Long.valueOf(id_tarifa));
+				reserva.setNombre(nombre);
+				reserva.setApellido1(apellido1);
+				reserva.setApellido2(apellido2);
+				reserva.setEmail(email);
+				reserva.setTelefono(telefono);
+				reserva.setNumCuenta(numCuenta);
+				reserva.setObservacion(observacion);
+				/*query.setLong("idHabitacion", idHabitacion);
+				query.setLong("idTarifa", Long.valueOf(id_tarifa));
+				query.setString("nombre", nombre);
+				query.setString("apellido1", apellido1);
+				query.setString("apellido2", apellido2);
+				query.setString("email", email);
+				query.setString("telefono", telefono);
+				query.setString("numCuenta", numCuenta);
+				query.setString("observacion", observacion);*/
+				formatter = new SimpleDateFormat("dd/MM/yyyy");
+		        date=new Date();
+		        reserva.setFechaRealizacion(date);
+		        //query.setDate("fechaRealizacion", date);
+		        date=formatter.parse(fechaEntrada);
+		        //query.setDate("fechaEntrada", date);
+		        reserva.setFechaEntrada(date);
+		        date=formatter.parse(fechaSalida);
+		        //query.setDate("fechaSaldia", date);
+		        reserva.setFechaSalida(date);
+		        Long valor=null;
+		        valor=(Long)session.save(reserva);
+		        if (valor!=null){
+		        	session.getTransaction().commit();
+		        	return "Su reserva se ha realizado correctamente!";
+		        	
+		        }else{
+		        	session.close();
+		        	return "Su reservo no se ha podido realizar. Por favor, vuelva a intentarlo!";
+		        }
+			}
+		} catch (HibernateException e){
+			 System.out.println(e.getMessage());
+	         System.out.println("error");
+	         return "Error interno";
+		}
 	}
 	
 	public Hotel getHotel(String id){
