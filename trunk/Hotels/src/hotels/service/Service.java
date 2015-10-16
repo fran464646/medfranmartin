@@ -111,23 +111,37 @@ public class Service {
 	public String Hotel(@PathParam("id_hotel")String id, @QueryParam("fechaEntrada")String fechaEntrada,@QueryParam("fechaSalida")String fechaSalida) throws ParseException{
 		String habitacionesJSON;
 		List<TipoHabitacion> habitaciones=new HotelDAO().getHotelRooms(id,fechaEntrada,fechaSalida);
+		System.out.println("\n\n\n\n HOLAAAAAAAAAAAA4 \n\n\n\n");
 		List<TipoHabitacion> habitacionesfinal=new ArrayList<TipoHabitacion>();
 		 Iterator itr = habitaciones.iterator();
 	        while(itr.hasNext()){
+	        	System.out.println("averooooh");
 	           Object[] obj = (Object[]) itr.next();
+	           System.out.println("averquepasaaqui");
 	           //now you have one array of Object for each row
 	           Long idHabitacion = Long.valueOf(String.valueOf(obj[0]));
+	           
 	           Long idHotel = Long.valueOf(String.valueOf(obj[1]));
+	           System.out.println(idHabitacion);
+	           System.out.println("joder");
+	           System.out.println(String.valueOf(obj[2]));
 	           String nombre = String.valueOf(obj[2]);
+	           System.out.println("joder");
 	           Integer capacidad = Integer.valueOf(String.valueOf(obj[3]));
 	           Integer tamano = Integer.valueOf(String.valueOf(obj[4]));
 	           String tipoCama = String.valueOf(obj[5]);
-	           Boolean oferta = Boolean.valueOf(String.valueOf(obj[6]));	
+	           Boolean oferta = Boolean.valueOf(String.valueOf(obj[6]));
+	           System.out.println("1");
 	           TipoHabitacion tipoHabitacion=new TipoHabitacion(idHabitacion,idHotel,nombre,capacidad,tamano,tipoCama,oferta);
+	           System.out.println("2");
 	           habitacionesfinal.add(tipoHabitacion);
+	           System.out.println("3");
 	        }
+
 		Gson gson = new Gson();
+		System.out.println("\n\n\n\n HOLAAAAAAAAAAAA12 \n\n\n\n");
         habitacionesJSON = gson.toJson(habitacionesfinal);
+        System.out.println("\n\n\n\n HOLAAAAAAAAAAAA \n\n\n\n");
         return habitacionesJSON;
 	}
 	
