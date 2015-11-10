@@ -371,7 +371,7 @@ public class HotelDAO {
 	            }
 
 	            if (numHabitacionesAnadido){
-	            	sql=sql.concat(" HAVING count(f.numero)>="+numHabitaciones.toString());
+	            	sql=sql.concat(" HAVING count(distinct f.numero)>="+numHabitaciones.toString());
 	            }
 	            if (!conditionsList.isEmpty()){
 	            	sql=sql.concat(" ORDER BY ");
