@@ -28,6 +28,7 @@ public class TestOrderHotels {
 		if (tamano>1){
 			for (int j = 1;j<tamano;j++){
 				assertTrue(hoteles_BD.get(i).getNombre().compareToIgnoreCase(hoteles_BD.get(j).getNombre())<=0);
+				i++;
 			}
 		} else assertTrue(true);
 	}

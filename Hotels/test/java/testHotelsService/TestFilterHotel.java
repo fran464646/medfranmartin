@@ -53,12 +53,14 @@ public class TestFilterHotel {
 		ArrayList<String> keys = new ArrayList<String>();
 		ArrayList<String> values = new ArrayList<String>();
 		keys.add("numeroHabitaciones");
-		values.add("3");
+		values.add("6");
 		List<Hotel> hoteles = new ArrayList<Hotel>();
 		hoteles = hoteldao.getHotels(keys,values);
 		
 		Iterator itr = hoteles.iterator();
 	       Object[] obj = (Object[]) itr.next();
+	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),1l)==0);
+	       obj = (Object[]) itr.next();
 	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),3l)==0);
 	       obj = (Object[]) itr.next();
 	       assertTrue(Long.compare(Long.valueOf(String.valueOf(obj[0])),4l)==0);

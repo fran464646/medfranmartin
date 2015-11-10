@@ -5,6 +5,7 @@ public class Regimen {
 	private String nombre;
 	private String condiciones;
 	private Long idTipoHabitacion;
+	
 	public Long getId() {
 		return id;
 	}
